@@ -6,4 +6,3 @@ pandas
 tqdm
 matplotlib
 opencv-python
-ntpath

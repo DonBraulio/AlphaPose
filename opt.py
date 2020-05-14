@@ -1,5 +1,7 @@
+import sys
 import argparse
 import torch
+from argparse import Namespace
 
 parser = argparse.ArgumentParser(description='PyTorch AlphaPose Training')
 
@@ -143,6 +145,16 @@ parser.add_argument('--save_video', dest='save_video',
                     help='whether to save rendered video', default=False, action='store_true')
 parser.add_argument('--vis_fast', dest='vis_fast',
                     help='use fast rendering', action='store_true', default=False)
-opt = parser.parse_args()
+
+
+# Workaround to allow running code in a jupyter notebook
+if 'ipykernel' in sys.argv[0]:
+    params = {}
+    for a in parser._actions:
+        param_name = a.dest
+        params[param_name] = parser.get_default(param_name)
+    opt = Namespace(**params)
+else:
+    opt = parser.parse_args()
 
 opt.num_classes = 80
