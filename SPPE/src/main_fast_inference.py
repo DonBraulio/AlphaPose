@@ -25,13 +25,13 @@ except AttributeError:
 
 
 class InferenNet(nn.Module):
-    def __init__(self, kernel_size, dataset):
+    def __init__(self, kernel_size, dataset, path="."):
         super(InferenNet, self).__init__()
 
         model = createModel().cuda()
-        print('Loading pose model from {}'.format('./models/sppe/duc_se.pth'))
+        print('Loading pose model from {}'.format(f'{path}/models/sppe/duc_se.pth'))
         sys.stdout.flush()
-        model.load_state_dict(torch.load('./models/sppe/duc_se.pth'))
+        model.load_state_dict(torch.load(f'{path}/models/sppe/duc_se.pth'))
         model.eval()
         self.pyranet = model
 
@@ -53,12 +53,12 @@ class InferenNet(nn.Module):
 
 
 class InferenNet_fast(nn.Module):
-    def __init__(self, kernel_size, dataset):
+    def __init__(self, kernel_size, dataset, path="."):
         super(InferenNet_fast, self).__init__()
 
         model = createModel().cuda()
-        print('Loading pose model from {}'.format('./models/sppe/duc_se.pth'))
-        model.load_state_dict(torch.load('./models/sppe/duc_se.pth'))
+        print('Loading pose model from {}'.format(f'{path}/models/sppe/duc_se.pth'))
+        model.load_state_dict(torch.load(f'{path}/models/sppe/duc_se.pth'))
         model.eval()
         self.pyranet = model
 

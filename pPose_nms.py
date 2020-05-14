@@ -360,4 +360,3 @@ def write_json(all_results, outputpath, for_eval=False):
     else:
         with open(os.path.join(outputpath,'alphapose-results.json'), 'w') as json_file:
             json_file.write(json.dumps(json_results))
-
