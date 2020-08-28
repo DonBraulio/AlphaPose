@@ -148,13 +148,10 @@ parser.add_argument('--vis_fast', dest='vis_fast',
 
 
 # Workaround to allow running code in a jupyter notebook
-if 'ipykernel' in sys.argv[0]:
-    params = {}
-    for a in parser._actions:
-        param_name = a.dest
-        params[param_name] = parser.get_default(param_name)
-    opt = Namespace(**params)
-else:
-    opt = parser.parse_args()
+params = {}
+for a in parser._actions:
+    param_name = a.dest
+    params[param_name] = parser.get_default(param_name)
+opt = Namespace(**params)
 
 opt.num_classes = 80
